@@ -78,13 +78,21 @@
   header.nav.scrolled{border-bottom-color:var(--card-brd);background:rgba(10,3,4,.85)}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
   .brand{font-weight:800;font-size:18px;letter-spacing:.2px}
-  .brand span{background:linear-gradient(90deg,var(--p2),var(--p1));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .brand span.grad-logo{background:linear-gradient(90deg,var(--p2),var(--p1));-webkit-background-clip:text;background-clip:text;color:transparent}
   .navlinks{display:flex;gap:26px;font-size:15px;color:var(--muted)}
   .navlinks a{position:relative;transition:.25s}
   .navlinks a::after{content:"";position:absolute;bottom:-6px;right:0;width:0;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--p2),var(--p1));transition:.3s}
   .navlinks a:hover{color:var(--txt)}
   .navlinks a:hover::after{width:100%}
   @media(max-width:760px){.navlinks{display:none}}
+  .nav-right{display:flex;align-items:center;gap:14px}
+  .lang-toggle{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-family:inherit;
+    font-size:13px;font-weight:700;color:var(--txt);padding:7px 14px;border-radius:999px;
+    border:1px solid var(--card-brd);background:var(--card);transition:.3s}
+  .lang-toggle:hover{border-color:var(--p1);background:rgba(255,46,63,.1)}
+  .lang-toggle .globe{font-size:15px;line-height:1}
+  .lang-toggle b{color:var(--p1)}
+  @media(max-width:420px){.lang-toggle span.txt{display:none}}
 
   /* هیرو */
   .hero{min-height:100vh;display:flex;align-items:center;padding-top:80px}
@@ -198,6 +206,16 @@
   .reveal{opacity:0;transform:translateY(38px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
   .reveal.in{opacity:1;transform:none}
 
+  /* حالت انگلیسی */
+  html[dir="ltr"] body{font-family:'Vazirmatn',system-ui,-apple-system,sans-serif}
+  html[dir="ltr"] .hero p.lead{margin-inline:0}
+  html[dir="ltr"] .tl-item .when{text-align:left}
+  html[dir="ltr"] .sec-head .kicker{letter-spacing:3px}
+
+  /* متن آواتار (وقتی عکس نیست) */
+  .avatar-core .initial{font-size:76px;font-weight:900;
+    background:linear-gradient(120deg,#fff,var(--p2));-webkit-background-clip:text;background-clip:text;color:transparent}
+
   ::selection{background:rgba(255,46,63,.4)}
   ::-webkit-scrollbar{width:10px}
   ::-webkit-scrollbar-track{background:var(--bg)}
@@ -210,15 +228,20 @@
 
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
-    <a href="#home" class="brand">مهدی <span>حبیبی</span></a>
-    <nav class="navlinks">
-      <a href="#about">درباره من</a>
-      <a href="#experience">سوابق کاری</a>
-      <a href="#skills">مهارت‌ها</a>
-      <a href="#projects">پروژه‌ها</a>
-      <a href="#certs">گواهی‌نامه‌ها</a>
-      <a href="#contact">تماس</a>
-    </nav>
+    <a href="#home" class="brand"><span data-fa="مهدی " data-en="Mahdi ">مهدی </span><span class="grad-logo" data-fa="حبیبی" data-en="Habibi">حبیبی</span></a>
+    <div class="nav-right">
+      <nav class="navlinks">
+        <a href="#about" data-fa="درباره من" data-en="About">درباره من</a>
+        <a href="#experience" data-fa="سوابق کاری" data-en="Experience">سوابق کاری</a>
+        <a href="#skills" data-fa="مهارت‌ها" data-en="Skills">مهارت‌ها</a>
+        <a href="#projects" data-fa="پروژه‌ها" data-en="Projects">پروژه‌ها</a>
+        <a href="#certs" data-fa="گواهی‌نامه‌ها" data-en="Certificates">گواهی‌نامه‌ها</a>
+        <a href="#contact" data-fa="تماس" data-en="Contact">تماس</a>
+      </nav>
+      <button class="lang-toggle" id="langToggle" type="button">
+        <span class="globe">🌐</span><span class="txt"><b id="curLang">EN</b></span>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -226,23 +249,23 @@
 <section class="hero" id="home">
   <div class="wrap hero-grid">
     <div>
-      <div class="tag"><span class="dot"></span> آمادهٔ همکاری و پروژه‌های جدید</div>
-      <h1>سلام، من <span class="grad">مهدی حبیبی</span> هستم</h1>
-      <div class="typed-wrap">علاقه‌مند به <span class="typed" id="typed"></span><span class="caret"></span></div>
-      <p class="lead">
+      <div class="tag"><span class="dot"></span> <span data-fa="آمادهٔ همکاری و پروژه‌های جدید" data-en="Available for new collaborations & projects">آمادهٔ همکاری و پروژه‌های جدید</span></div>
+      <h1><span data-fa="سلام، من " data-en="Hi, I'm ">سلام، من </span><span class="grad" data-fa="مهدی حبیبی" data-en="Mahdi Habibi">مهدی حبیبی</span><span data-fa=" هستم" data-en=""> هستم</span></h1>
+      <div class="typed-wrap"><span data-fa="علاقه‌مند به " data-en="Passionate about ">علاقه‌مند به </span><span class="typed" id="typed"></span><span class="caret"></span></div>
+      <p class="lead" data-fa="دانشجوی مهندسی کامپیوتر دانشگاه صنعتی ارومیه (مهمان دائم دانشگاه گیلان)، علاقه‌مند به توسعه نرم‌افزار، هوش مصنوعی و اتوماسیون فرآیندها. مشتاق یادگیری، پیشرفت و کار تیمی." data-en="Computer Engineering student at Urmia University of Technology (permanent guest at University of Guilan), passionate about software development, artificial intelligence and process automation. Eager to learn, grow and work in a team.">
         دانشجوی مهندسی کامپیوتر دانشگاه صنعتی ارومیه (مهمان دائم دانشگاه گیلان)،
         علاقه‌مند به توسعه نرم‌افزار، هوش مصنوعی و اتوماسیون فرآیندها.
         مشتاق یادگیری، پیشرفت و کار تیمی.
       </p>
       <div class="cta">
-        <a href="#projects" class="btn primary">مشاهده پروژه‌ها</a>
-        <a href="#contact" class="btn ghost">راه‌های ارتباطی</a>
+        <a href="#projects" class="btn primary" data-fa="مشاهده پروژه‌ها" data-en="View Projects">مشاهده پروژه‌ها</a>
+        <a href="#contact" class="btn ghost" data-fa="راه‌های ارتباطی" data-en="Get in Touch">راه‌های ارتباطی</a>
       </div>
     </div>
     <div class="avatar">
       <div class="ring"></div>
       <div class="ring r2"></div>
-      <div class="avatar-core"><img src="profile.png" alt="مهدی حبیبی" /></div>
+      <div class="avatar-core"><img src="profile.png" data-alt-fa="مهدی حبیبی" data-alt-en="Mahdi Habibi" alt="مهدی حبیبی" /></div>
       <div class="chip c1">Python</div>
       <div class="chip c2">Docker</div>
       <div class="chip c3">AI</div>
@@ -255,14 +278,14 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="kicker">About Me</div>
-      <h2>درباره من</h2>
+      <h2 data-fa="درباره من" data-en="About Me">درباره من</h2>
       <div class="line"></div>
     </div>
     <div class="contact-grid reveal">
-      <div class="card"><div class="ci">🎓</div><div><div class="lbl">تحصیلات</div><div class="val" style="direction:rtl">کارشناسی مهندسی  کامپیوتر</div></div></div>
-      <div class="card"><div class="ci">🏛️</div><div><div class="lbl">دانشگاه</div><div class="val" style="direction:rtl">صنعتی ارومیه   (مهمان گیلان)</div></div></div>
-      <div class="card"><div class="ci">📍</div><div><div class="lbl">محل سکونت</div><div class="val" style="direction:rtl">رشت، گیلان</div></div></div>
-      <div class="card"><div class="ci">🗣️</div><div><div class="lbl">زبان‌ها</div><div class="val" style="direction:rtl">فارسی — انگلیسی   (پیشرفته)</div></div></div>
+      <div class="card"><div class="ci">🎓</div><div><div class="lbl" data-fa="تحصیلات" data-en="Education">تحصیلات</div><div class="val" style="direction:rtl" data-fa="کارشناسی مهندسی کامپیوتر" data-en="B.Sc. in Computer Engineering" data-dir="rev">کارشناسی مهندسی کامپیوتر</div></div></div>
+      <div class="card"><div class="ci">🏛️</div><div><div class="lbl" data-fa="دانشگاه" data-en="University">دانشگاه</div><div class="val" style="direction:rtl" data-fa="صنعتی ارومیه (مهمان گیلان)" data-en="Urmia Univ. of Technology (guest at Guilan)" data-dir="rev">صنعتی ارومیه (مهمان گیلان)</div></div></div>
+      <div class="card"><div class="ci">📍</div><div><div class="lbl" data-fa="محل سکونت" data-en="Location">محل سکونت</div><div class="val" style="direction:rtl" data-fa="رشت، گیلان، ایران" data-en="Rasht, Guilan, Iran" data-dir="rev">رشت، گیلان</div></div></div>
+      <div class="card"><div class="ci">🗣️</div><div><div class="lbl" data-fa="زبان‌ها" data-en="Languages">زبان‌ها</div><div class="val" style="direction:rtl" data-fa="فارسی — انگلیسی (پیشرفته)" data-en="Persian — English (Advanced)" data-dir="rev">فارسی — انگلیسی (پیشرفته)</div></div></div>
     </div>
   </div>
 </section>
@@ -272,32 +295,32 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="kicker">Experience</div>
-      <h2>سوابق کاری</h2>
+      <h2 data-fa="سوابق کاری" data-en="Experience">سوابق کاری</h2>
       <div class="line"></div>
     </div>
     <div class="timeline">
       <div class="tl-item reveal">
         <div class="card">
-          <div class="when">۱۴۰۴/۰۴ – ۱۴۰۵/۰۶</div>
-          <h3>کارشناس فناوری اطلاعات</h3>
-          <div class="where">نیروگاه سیکل ترکیبی گیلان</div>
-          <p>راه‌اندازی سیستم اتوماسیون ثبت نتایج آزمایشگاهی.</p>
+          <div class="when" data-fa="۱۴۰۴/۰۴ – ۱۴۰۵/۰۶" data-en="2025/06 – 2026/08">۱۴۰۴/۰۴ – ۱۴۰۵/۰۶</div>
+          <h3 data-fa="کارشناس فناوری اطلاعات" data-en="IT Specialist">کارشناس فناوری اطلاعات</h3>
+          <div class="where" data-fa="نیروگاه سیکل ترکیبی گیلان" data-en="Guilan Combined Cycle Power Plant">نیروگاه سیکل ترکیبی گیلان</div>
+          <p data-fa="راه‌اندازی سیستم اتوماسیون ثبت نتایج آزمایشگاهی." data-en="Implemented the laboratory results recording automation system.">راه‌اندازی سیستم اتوماسیون ثبت نتایج آزمایشگاهی.</p>
         </div>
       </div>
       <div class="tl-item reveal">
         <div class="card">
-          <div class="when">۱۴۰۳/۰۴ – ۱۴۰۴/۰۶</div>
-          <h3>مترجم انگلیسی</h3>
-          <div class="where">One Translation Group</div>
-          <p>ترجمه و زیرنویس دوره‌های تخصصی هوش مصنوعی و مهارت‌های مهندسی کامپیوتر.</p>
+          <div class="when" data-fa="۱۴۰۳/۰۴ – ۱۴۰۴/۰۶" data-en="2024/06 – 2025/08">۱۴۰۳/۰۴ – ۱۴۰۴/۰۶</div>
+          <h3 data-fa="مترجم انگلیسی" data-en="English Translator">مترجم انگلیسی</h3>
+          <div class="where" data-fa="گروه ترجمه One" data-en="One Translation Group">One Translation Group</div>
+          <p data-fa="ترجمه و زیرنویس دوره‌های تخصصی هوش مصنوعی و مهارت‌های مهندسی کامپیوتر." data-en="Translated and subtitled specialized AI and computer engineering courses.">ترجمه و زیرنویس دوره‌های تخصصی هوش مصنوعی و مهارت‌های مهندسی کامپیوتر.</p>
         </div>
       </div>
       <div class="tl-item reveal">
         <div class="card">
-          <div class="when">۱۴۰۱/۰۷ – اکنون</div>
-          <h3>کارشناسی مهندسی کامپیوتر</h3>
-          <div class="where">دانشگاه صنعتی ارومیه — معدل ۱۵</div>
-          <p>در حال حاضر مهمان دائم دانشگاه گیلان هستم.</p>
+          <div class="when" data-fa="۱۴۰۱/۰۷ – اکنون" data-en="2022/09 – Present">۱۴۰۱/۰۷ – اکنون</div>
+          <h3 data-fa="کارشناسی مهندسی کامپیوتر" data-en="B.Sc. Computer Engineering">کارشناسی مهندسی کامپیوتر</h3>
+          <div class="where" data-fa="دانشگاه صنعتی ارومیه — معدل ۱۵" data-en="Urmia University of Technology — GPA 15">دانشگاه صنعتی ارومیه — معدل ۱۵</div>
+          <p data-fa="در حال حاضر مهمان دائم دانشگاه گیلان هستم." data-en="Currently a permanent guest student at the University of Guilan.">در حال حاضر مهمان دائم دانشگاه گیلان هستم.</p>
         </div>
       </div>
     </div>
@@ -321,26 +344,26 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="kicker">Projects</div>
-      <h2>پروژه‌ها و نمونه‌کارها</h2>
+      <h2 data-fa="پروژه‌ها و نمونه‌کارها" data-en="Projects & Portfolio">پروژه‌ها و نمونه‌کارها</h2>
       <div class="line"></div>
     </div>
     <div class="projects">
       <div class="card proj reveal">
         <div class="icon">🏥</div>
-        <h3>سامانه ارزیابی ریسک پزشکی</h3>
-        <p>پروژه‌ای تیمی؛ وظیفه من اتصال دیتابیس به پروژه و تبدیل آن به اپلیکیشن اندروید بود.</p>
+        <h3 data-fa="سامانه ارزیابی ریسک پزشکی" data-en="Medical Risk Assessment System">سامانه ارزیابی ریسک پزشکی</h3>
+        <p data-fa="پروژه‌ای تیمی؛ وظیفه من اتصال دیتابیس به پروژه و تبدیل آن به اپلیکیشن اندروید بود." data-en="A team project; my role was connecting the database and converting it into an Android application.">پروژه‌ای تیمی؛ وظیفه من اتصال دیتابیس به پروژه و تبدیل آن به اپلیکیشن اندروید بود.</p>
         <a class="link" href="https://mehdi-habibi81.github.io/FatehMdicalWeb/" target="_blank" rel="noopener">mehdi-habibi81.github.io/FatehMdicalWeb</a>
       </div>
       <div class="card proj reveal">
         <div class="icon">📱</div>
-        <h3>اپلیکیشن سامانه ارزیابی ریسک پزشکی</h3>
-        <p>FatehMedical شامل تمامی کدها و پوشه اپلیکیشن اندروید.</p>
+        <h3 data-fa="اپلیکیشن سامانه ارزیابی ریسک پزشکی" data-en="Medical Risk Assessment App">اپلیکیشن سامانه ارزیابی ریسک پزشکی</h3>
+        <p data-fa="FatehMedical شامل تمامی کدها و پوشه اپلیکیشن اندروید." data-en="FatehMedical includes all source code and the Android application package.">FatehMedical شامل تمامی کدها و پوشه اپلیکیشن اندروید.</p>
         <a class="link" href="https://github.com/Mehdi-Habibi81/fateh" target="_blank" rel="noopener">github.com/Mehdi-Habibi81/fateh</a>
       </div>
       <div class="card proj reveal">
         <div class="icon">✅</div>
-        <h3>Task Manager API</h3>
-        <p>API مدیریت وظایف، نمونه‌ای از توسعه بک‌اند و طراحی API.</p>
+        <h3 data-fa="Task Manager API" data-en="Task Manager API">Task Manager API</h3>
+        <p data-fa="API مدیریت وظایف، نمونه‌ای از توسعه بک‌اند و طراحی API." data-en="A task management API, demonstrating backend development and API design.">API مدیریت وظایف، نمونه‌ای از توسعه بک‌اند و طراحی API.</p>
         <a class="link" href="https://github.com/Mehdi-Habibi81/Task-manager-api" target="_blank" rel="noopener">github.com/Mehdi-Habibi81/Task-manager-api</a>
       </div>
     </div>
@@ -352,35 +375,35 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="kicker">Certificates</div>
-      <h2>افتخارات و گواهی‌نامه‌ها</h2>
+      <h2 data-fa="افتخارات و گواهی‌نامه‌ها" data-en="Honors & Certificates">افتخارات و گواهی‌نامه‌ها</h2>
       <div class="line"></div>
     </div>
     <div class="certs">
       <div class="card cert reveal">
         <div class="seal">🏅</div>
         <div>
-          <h3>دوره زبان انگلیسی</h3>
-          <div class="org">کانون زبان ایران</div>
-          <div class="date">۱۴۰۰/۰۱ — بدون انقضا</div>
-          <p style="color:var(--muted);font-size:13.5px;margin-top:6px">دوره زبان انگلیسی کانون زبان ایران به‌طور کامل گذرانده و دارای گواهی هستم.</p>
+          <h3 data-fa="دوره زبان انگلیسی" data-en="English Language Course">دوره زبان انگلیسی</h3>
+          <div class="org" data-fa="کانون زبان ایران" data-en="Iran Language Institute">کانون زبان ایران</div>
+          <div class="date" data-fa="۱۴۰۰/۰۱ — بدون انقضا" data-en="2021/03 — No Expiry">۱۴۰۰/۰۱ — بدون انقضا</div>
+          <p style="color:var(--muted);font-size:13.5px;margin-top:6px" data-fa="دوره زبان انگلیسی کانون زبان ایران به‌طور کامل گذرانده و دارای گواهی هستم." data-en="Completed the full English language program at Iran Language Institute and hold its certificate.">دوره زبان انگلیسی کانون زبان ایران به‌طور کامل گذرانده و دارای گواهی هستم.</p>
         </div>
       </div>
       <div class="card cert reveal">
         <div class="seal">🏅</div>
         <div>
-          <h3>Introduction to HTML</h3>
-          <div class="org">SoloLearn</div>
-          <div class="date">۱۴۰۴/۰۴ — بدون انقضا</div>
-          <a href="https://api2.sololearn.com/v2/certificates/CC-7CXL7P4O/image/png" target="_blank" rel="noopener">مشاهده گواهی</a>
+          <h3 data-fa="Introduction to HTML" data-en="Introduction to HTML">Introduction to HTML</h3>
+          <div class="org" data-fa="SoloLearn" data-en="SoloLearn">SoloLearn</div>
+          <div class="date" data-fa="۱۴۰۴/۰۴ — بدون انقضا" data-en="2025/06 — No Expiry">۱۴۰۴/۰۴ — بدون انقضا</div>
+          <a href="https://api2.sololearn.com/v2/certificates/CC-7CXL7P4O/image/png" target="_blank" rel="noopener" data-fa="مشاهده گواهی" data-en="View Certificate">مشاهده گواهی</a>
         </div>
       </div>
       <div class="card cert reveal">
         <div class="seal">🏅</div>
         <div>
-          <h3>Vibe Coding</h3>
-          <div class="org">SoloLearn</div>
-          <div class="date">۱۴۰۵/۰۵ — بدون انقضا</div>
-          <a href="https://api2.sololearn.com/v2/certificates/CC-PYPQ3DLV/image/png" target="_blank" rel="noopener">مشاهده گواهی</a>
+          <h3 data-fa="Vibe Coding" data-en="Vibe Coding">Vibe Coding</h3>
+          <div class="org" data-fa="SoloLearn" data-en="SoloLearn">SoloLearn</div>
+          <div class="date" data-fa="۱۴۰۵/۰۵ — بدون انقضا" data-en="2025/07 — No Expiry">۱۴۰۵/۰۵ — بدون انقضا</div>
+          <a href="https://api2.sololearn.com/v2/certificates/CC-PYPQ3DLV/image/png" target="_blank" rel="noopener" data-fa="مشاهده گواهی" data-en="View Certificate">مشاهده گواهی</a>
         </div>
       </div>
     </div>
@@ -392,80 +415,113 @@
   <div class="wrap contact-wrap">
     <div class="sec-head reveal">
       <div class="kicker">Contact</div>
-      <h2>راه‌های ارتباطی</h2>
+      <h2 data-fa="راه‌های ارتباطی" data-en="Contact">راه‌های ارتباطی</h2>
       <div class="line"></div>
     </div>
     <div class="contact-grid">
       <a class="card reveal" href="tel:09115470640">
-        <div class="ci">📞</div><div><div class="lbl">تلفن</div><div class="val">۰۹۱۱۵۴۷۰۶۴۰</div></div>
+        <div class="ci">📞</div><div><div class="lbl" data-fa="تلفن" data-en="Phone">تلفن</div><div class="val">۰۹۱۱۵۴۷۰۶۴۰</div></div>
       </a>
       <a class="card reveal" href="mailto:mahdihabibi262@gmail.com">
-        <div class="ci">✉️</div><div><div class="lbl">ایمیل</div><div class="val">mahdihabibi262@gmail.com</div></div>
+        <div class="ci">✉️</div><div><div class="lbl" data-fa="ایمیل" data-en="Email">ایمیل</div><div class="val">mahdihabibi262@gmail.com</div></div>
       </a>
       <a class="card reveal" href="https://github.com/Mehdi-Habibi81" target="_blank" rel="noopener">
-        <div class="ci">💻</div><div><div class="lbl">گیت‌هاب</div><div class="val">github.com/Mehdi-Habibi81</div></div>
+        <div class="ci">💻</div><div><div class="lbl" data-fa="گیت‌هاب" data-en="GitHub">گیت‌هاب</div><div class="val">github.com/Mehdi-Habibi81</div></div>
       </a>
       <div class="card reveal">
-        <div class="ci">📍</div><div><div class="lbl">آدرس</div><div class="val" style="direction:rtl">استان گیلان، رشت</div></div>
+        <div class="ci">📍</div><div><div class="lbl" data-fa="آدرس" data-en="Address">آدرس</div><div class="val" style="direction:rtl" data-fa="استان گیلان، رشت" data-en="Guilan Province, Rasht" data-dir="rev">استان گیلان، رشت</div></div>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap">© <span id="yr"></span> مهدی حبیبی — ساخته‌شده با ❤️</div>
+  <div class="wrap">© <span id="yr"></span> <span data-fa="مهدی حبیبی — ساخته‌شده با ❤️" data-en="Mahdi Habibi — Made with ❤️">مهدی حبیبی — ساخته‌شده با ❤️</span></div>
 </footer>
 
 <script>
 /* ===== داده مهارت‌ها ===== */
 const skills = [
-  {name:'زبان انگلیسی', lvl:'پیشرفته', p:90},
-  {name:'Docker', lvl:'پیشرفته', p:85},
-  {name:'Python', lvl:'حرفه‌ای', p:88, hi:true},
-  {name:'برنامه‌نویسی', lvl:'پیشرفته', p:85},
-  {name:'تست و اشکال‌زدایی', lvl:'پیشرفته', p:82},
-  {name:'Agile Methodologies', lvl:'پیشرفته', p:85},
-  {name:'Teamwork', lvl:'پیشرفته', p:90},
-  {name:'Communication', lvl:'پیشرفته', p:88},
-  {name:'Presentation Skills', lvl:'پیشرفته', p:85},
-  {name:'توسعه وب اپلیکیشن', lvl:'پیشرفته', p:80},
-  {name:'آشنایی با Windows', lvl:'حرفه‌ای', p:90},
-  {name:'تدوین گزارش', lvl:'پیشرفته', p:82},
-  {name:'Git', lvl:'متوسط', p:65},
-  {name:'Linux', lvl:'متوسط', p:68},
-  {name:'CI/CD', lvl:'متوسط', p:62},
-  {name:'طراحی دیتابیس', lvl:'متوسط', p:66},
-  {name:'طراحی API', lvl:'متوسط', p:68},
-  {name:'مدیریت پروژه', lvl:'متوسط', p:66},
-  {name:'حل مسئله', lvl:'متوسط', p:70},
-  {name:'رهبری تیم', lvl:'متوسط', p:64},
-  {name:'توسعه نرم‌افزار', lvl:'متوسط', p:70},
-  {name:'توسعه وب', lvl:'متوسط', p:60},
-  {name:'SQL', lvl:'مبتدی', p:40},
-  {name:'C++', lvl:'مبتدی', p:35},
+  {name:'زبان انگلیسی', en:'English', lvl:'پیشرفته', enLvl:'Advanced', p:90},
+  {name:'Docker', en:'Docker', lvl:'پیشرفته', enLvl:'Advanced', p:85},
+  {name:'Python', en:'Python', lvl:'حرفه‌ای', enLvl:'Proficient', p:88, hi:true},
+  {name:'برنامه‌نویسی', en:'Programming', lvl:'پیشرفته', enLvl:'Advanced', p:85},
+  {name:'تست و اشکال‌زدایی', en:'Testing & Debugging', lvl:'پیشرفته', enLvl:'Advanced', p:82},
+  {name:'Agile Methodologies', en:'Agile Methodologies', lvl:'پیشرفته', enLvl:'Advanced', p:85},
+  {name:'Teamwork', en:'Teamwork', lvl:'پیشرفته', enLvl:'Advanced', p:90},
+  {name:'Communication', en:'Communication', lvl:'پیشرفته', enLvl:'Advanced', p:88},
+  {name:'Presentation Skills', en:'Presentation Skills', lvl:'پیشرفته', enLvl:'Advanced', p:85},
+  {name:'توسعه وب اپلیکیشن', en:'Web App Development', lvl:'پیشرفته', enLvl:'Advanced', p:80},
+  {name:'آشنایی با Windows', en:'Windows OS', lvl:'حرفه‌ای', enLvl:'Proficient', p:90},
+  {name:'تدوین گزارش', en:'Report Writing', lvl:'پیشرفته', enLvl:'Advanced', p:82},
+  {name:'Git', en:'Git', lvl:'متوسط', enLvl:'Intermediate', p:65},
+  {name:'Linux', en:'Linux', lvl:'متوسط', enLvl:'Intermediate', p:68},
+  {name:'CI/CD', en:'CI/CD', lvl:'متوسط', enLvl:'Intermediate', p:62},
+  {name:'طراحی دیتابیس', en:'Database Design', lvl:'متوسط', enLvl:'Intermediate', p:66},
+  {name:'طراحی API', en:'API Design', lvl:'متوسط', enLvl:'Intermediate', p:68},
+  {name:'مدیریت پروژه', en:'Project Management', lvl:'متوسط', enLvl:'Intermediate', p:66},
+  {name:'حل مسئله', en:'Problem Solving', lvl:'متوسط', enLvl:'Intermediate', p:70},
+  {name:'رهبری تیم', en:'Team Leadership', lvl:'متوسط', enLvl:'Intermediate', p:64},
+  {name:'توسعه نرم‌افزار', en:'Software Development', lvl:'متوسط', enLvl:'Intermediate', p:70},
+  {name:'توسعه وب', en:'Web Development', lvl:'متوسط', enLvl:'Intermediate', p:60},
+  {name:'SQL', en:'SQL', lvl:'مبتدی', enLvl:'Beginner', p:40},
+  {name:'C++', en:'C++', lvl:'مبتدی', enLvl:'Beginner', p:35},
 ];
 const grid = document.getElementById('skillsGrid');
 skills.forEach(s=>{
   const d = document.createElement('div');
   d.className = 'card reveal';
-  d.innerHTML = `<div class="skill"><div class="skill-top"><span>${s.name}</span><span class="lvl">${s.lvl}</span></div>
+  d.innerHTML = `<div class="skill"><div class="skill-top"><span data-fa="${s.name}" data-en="${s.en}">${s.name}</span><span class="lvl" data-fa="${s.lvl}" data-en="${s.enLvl}">${s.lvl}</span></div>
     <div class="bar"><i class="${s.hi?'hi':''}" data-p="${s.p}"></i></div></div>`;
   grid.appendChild(d);
 });
 
+/* ===== دو زبانه ===== */
+const T = {
+  fa:{typed:['توسعه نرم‌افزار','هوش مصنوعی','طراحی وب','اتوماسیون فرآیندها','کار تیمی'], htmlLang:'fa', dir:'rtl', toggle:'EN'},
+  en:{typed:['Software Development','Artificial Intelligence','Web Design','Process Automation','Teamwork'], htmlLang:'en', dir:'ltr', toggle:'FA'}
+};
+let lang = localStorage.getItem('site-lang') || 'fa';
+
 /* ===== افکت تایپ ===== */
-const words = ['توسعه نرم‌افزار','هوش مصنوعی','طراحی وب','اتوماسیون فرآیندها','کار تیمی'];
-let wi=0, ci=0, del=false;
+let wi=0, ci=0, del=false, typeTimer=null;
 const el = document.getElementById('typed');
 function type(){
-  const w = words[wi];
+  const words = T[lang].typed;
+  const w = words[wi % words.length];
   el.textContent = del ? w.slice(0,--ci) : w.slice(0,++ci);
   let t = del ? 55 : 110;
   if(!del && ci===w.length){ t=1500; del=true; }
   else if(del && ci===0){ del=false; wi=(wi+1)%words.length; t=350; }
-  setTimeout(type,t);
+  typeTimer = setTimeout(type,t);
 }
-type();
+
+function applyLang(l){
+  lang = l;
+  localStorage.setItem('site-lang', l);
+  const cfg = T[l];
+  document.documentElement.lang = cfg.htmlLang;
+  document.documentElement.dir = cfg.dir;
+  document.querySelectorAll('[data-fa]').forEach(n=>{
+    const key = l==='fa' ? 'data-fa' : 'data-en';
+    const v = n.getAttribute(key);
+    if(v!==null){
+      n.textContent = v;
+      if(n.hasAttribute('data-dir') && n.getAttribute('data-dir')==='rev'){
+        n.style.direction = (l==='fa') ? 'rtl' : 'ltr';
+      }
+    }
+  });
+  document.querySelectorAll('[data-alt-fa]').forEach(n=>{
+    n.setAttribute('alt', l==='fa' ? n.getAttribute('data-alt-fa') : n.getAttribute('data-alt-en'));
+  });
+  document.getElementById('curLang').textContent = cfg.toggle;
+  // ریست افکت تایپ
+  clearTimeout(typeTimer); wi=0; ci=0; del=false; el.textContent=''; type();
+}
+
+document.getElementById('langToggle').addEventListener('click', ()=> applyLang(lang==='fa'?'en':'fa'));
+applyLang(lang);
 
 /* ===== ظاهر شدن با اسکرول ===== */
 const io = new IntersectionObserver(entries=>{
